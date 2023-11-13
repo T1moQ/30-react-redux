@@ -50,6 +50,12 @@
 .book-list .book-actions {
    display: flex;
    align-items: center;
+   color: black;
+   cursor: pointer;
+}
+
+.book-list .book-actions:hover {
+   color: #fff;
 }
 
 .book-list .star-icon {

@@ -1,6 +1,6 @@
 import './App.css'
 import BookFrom from './components/BookForm/BookForm'
-import Filter from './components/Filter/Filter'
+// import Filter from './components/Filter/Filter'
 import BookList from './components/BookList/BookList'
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <BookFrom />
         </div>
         <div className="app-right-column">
-          <Filter />
+          {/* <Filter /> */}
           <BookList />
         </div>
       </main>
