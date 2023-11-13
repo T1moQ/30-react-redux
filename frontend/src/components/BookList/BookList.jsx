@@ -1,5 +1,5 @@
-import './BookList.css'
 import { useSelector } from "react-redux/es/hooks/useSelector"
+import './BookList.css'
 
 const BookList = () => {
    const books = useSelector((state) => state.books)
@@ -9,8 +9,8 @@ const BookList = () => {
          {books.length === 0
             ? <p>No Books Available</p>
             : <ul>{books.map((el, index) =>
-               <li key={index}>
-                  <div className="book-info">{el.title} by <strong>{el.author}</strong> </div>
+               <li key={el.id}>
+                  <div className="book-info">{++index}. {el.title} by <strong>{el.author}</strong> </div>
                </li>
             )}</ul>
          }

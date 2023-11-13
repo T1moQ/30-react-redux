@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addBook } from '../../redux/books/actionCreators'
+import { nanoid } from 'nanoid'
 import './BookForm.css'
 
 
@@ -17,6 +18,7 @@ const BookForm = () => {
          const book = {
             title,
             author,
+            id: nanoid(6)
          }
          dispatch(addBook(book))
          setTitle('')
