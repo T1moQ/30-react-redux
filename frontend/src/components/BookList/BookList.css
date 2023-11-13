@@ -8,11 +8,11 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   width: auto;
    padding: 10px 20px;
-   border-bottom: 1px solid #ccc;
+   border-bottom: 1px solid #4E4E50;
    background-color: #fff;
    list-style-type: none;
+   color: black;
 }
 
 .book-list li:nth-child(even) {
@@ -20,7 +20,8 @@
 }
 
 .book-list li:hover {
-   background-color: #dbe4f8;
+   background-color: #6F2232;
+   color: #fff;
 }
 
 .book-list button {
