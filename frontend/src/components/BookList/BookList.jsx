@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RiDeleteBin2Fill } from "react-icons/ri";
+import { RiDeleteBin2Fill, RiStarLine, RiStarFill } from "react-icons/ri";
 import './BookList.css'
-import { deleteBook } from "../../redux/books/actionCreators";
+import { deleteBook, toggleFavorite } from "../../redux/books/actionCreators";
 
 const BookList = () => {
    const books = useSelector((state) => state.books)
@@ -11,6 +11,10 @@ const BookList = () => {
       dispatch(deleteBook(id))
    }
 
+   const toggleHandler = (id) => {
+      dispatch(toggleFavorite(id))
+   }
+
    return (
       <div className='book-list app-block'>
          <h2>A Book list</h2>
@@ -18,8 +22,13 @@ const BookList = () => {
             ? <p>No Books Available</p>
             : <ul>{books.map((el, index) =>
                <li key={el.id}>
-                  <div className="book-info">{++index}. {el.title} by <strong>{el.author}</strong> </div>
-                  <div className="book-actions" onClick={() => deleteHandler(el.id)}><RiDeleteBin2Fill /></div>
+                  <div className="book-info">
+                     {++index}. {el.title} by <strong>{el.author}</strong>
+                  </div>
+                  <span onClick={() => toggleHandler(el.id)}>
+                     {el.isFavorite === true ? <RiStarFill className="star-icon" /> : <RiStarLine className="star-icon" />}
+                  </span>
+                  <div className="book-actions" onClick={() => deleteHandler(el.id)}> <RiDeleteBin2Fill /></div>
                </li>
             )}</ul>
          }
