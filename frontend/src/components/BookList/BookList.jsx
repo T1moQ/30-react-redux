@@ -8,7 +8,6 @@ const BookList = () => {
    const dispatch = useDispatch()
 
    const deleteHandler = (id) => {
-      console.log(deleteBook(id))
       dispatch(deleteBook(id))
    }
 

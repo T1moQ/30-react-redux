@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { addBook } from '../../redux/books/actionCreators'
 import { nanoid } from 'nanoid'
 import './BookForm.css'
+import booksDB from '../../data/booksDB.json'
 
 
 const BookForm = () => {
@@ -25,6 +26,19 @@ const BookForm = () => {
          setAuthor('')
       }
    }
+
+   const addRandomBookHandler = () => {
+      const randomIndex = Math.floor(Math.random() * booksDB.length)
+      const randomBook = booksDB[randomIndex]
+
+      const randomBookWithId = {
+         ...randomBook,
+         id: nanoid(6)
+      }
+
+      dispatch(addBook(randomBookWithId))
+   }
+
    return (
       <div className='book-form app-block'>
          <h2>A new Book</h2>
@@ -38,6 +52,7 @@ const BookForm = () => {
                <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
             </div>
             <button type='submit'>Add Book</button>
+            <button type='button' onClick={addRandomBookHandler}>Add Random Book</button>
          </form>
       </div>
    )
