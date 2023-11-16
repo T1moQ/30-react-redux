@@ -16,6 +16,11 @@
    border-radius: 3px;
 }
 
+.filter input[type='checkbox'] {
+   cursor: pointer;
+   background-color: #950740;
+}
+
 .filter button {
    background-color: #950740;
    color: #fff;
