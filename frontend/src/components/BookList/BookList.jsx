@@ -26,6 +26,21 @@ const BookList = () => {
       return matchesAuthor && matchesTitle && matchesFavorite
    })
 
+   const highlightMatch = (text, filter) => {
+      if (!filter) return text
+
+      const regex = new RegExp(`(${filter})`, 'gi')
+
+      return text.split(regex).map((substr, index) => {
+         if (substr.toLowerCase() === filter.toLowerCase()) {
+            return (
+               <span key={index} className="highlight">{substr}</span>
+            )
+         }
+         return substr
+      })
+   }
+
    return (
       <div className='book-list app-block'>
          <h2>A Book list</h2>
@@ -34,7 +49,8 @@ const BookList = () => {
             : <ul>{filteredBooks.map((el, index) =>
                <li key={el.id}>
                   <div className="book-info">
-                     {++index}. {el.title} by <strong>{el.author}</strong>
+                     {++index}. {highlightMatch(el.title, titleFilter)}{' '} by{' '}
+                     <strong>{highlightMatch(el.author, authorFilter)}</strong>
                   </div>
                   <span onClick={() => toggleHandler(el.id)}>
                      {el.isFavorite === true ? <RiStarFill className="star-icon" /> : <RiStarLine className="star-icon" />}
