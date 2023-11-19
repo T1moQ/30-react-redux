@@ -25,7 +25,7 @@ const filterSlice = createSlice({
    },
 })
 
-export const { setTitleFilter, setAuthorFilter, setOnlyFavorite,resetFilter } = filterSlice.actions
+export const { setTitleFilter, setAuthorFilter, setOnlyFavorite, resetFilter } = filterSlice.actions
 
 export const selectTitleFilter = (state) => state.filter.title
 
