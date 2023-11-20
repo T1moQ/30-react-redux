@@ -52,7 +52,7 @@ const BookList = () => {
                <li key={el.id}>
                   <div className="book-info">
                      {++index}. {highlightMatch(el.title, titleFilter)}{' '} by{' '}
-                     <strong>{highlightMatch(el.author, authorFilter)}</strong>
+                     <strong>{highlightMatch(el.author, authorFilter)}</strong> ({el.source})
                   </div>
                   <span onClick={() => toggleHandler(el.id)}>
                      {el.isFavorite === true ? <RiStarFill className="star-icon" /> : <RiStarLine className="star-icon" />}
