@@ -11,12 +11,12 @@ const Error = () => {
 
    useEffect(() => {
       if (errorMsg) {
-         toast.warning(errorMsg)
+         toast.error(errorMsg)
          dispatch(clearError())
       }
    }, [errorMsg, dispatch])
 
-   return <ToastContainer position='bottom-right' autoClose={3000} />
+   return <ToastContainer position='bottom-right' autoClose={3000} theme="dark" />
 }
 
 export default Error
