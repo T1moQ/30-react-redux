@@ -12,11 +12,11 @@ function getRandomBook() {
     return randomBook;
 }
 
-app.get('/random-book', (req, res) => {
+app.get('/random-book', (res) => {
     res.json(getRandomBook());
 });
 
-app.get('/random-book-delayed', (req, res) => {
+app.get('/random-book-delayed', (res) => {
     setTimeout(() => {
         res.json(getRandomBook());
     }, 2000);
