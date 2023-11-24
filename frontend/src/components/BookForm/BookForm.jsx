@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RiLoopRightLine } from "react-icons/ri";
-import { addBook, fetchBook } from '../../redux/slices/booksSlice'
+import { addBook, fetchBook, selectIsLoadingViaAPI } from '../../redux/slices/booksSlice'
 import { setError } from '../../redux/slices/errorSlice'
 import './BookForm.css'
 import booksDB from '../../data/booksDB.json'
@@ -13,7 +13,8 @@ const BookForm = () => {
 
    const [title, setTitle] = useState('')
    const [author, setAuthor] = useState('')
-   const [isLoading, setIsLoading] = useState(false)
+   // const [isLoading, setIsLoading] = useState(false)
+   const isLoadingViaAPI = useSelector(selectIsLoadingViaAPI)
 
    const submitHandler = (event) => {
       event.preventDefault()
@@ -37,14 +38,8 @@ const BookForm = () => {
       dispatch(addBook(randomBookWithId))
    }
 
-   const addRandomBookViaAPIHandler = async () => {
-      try {
-         setIsLoading(true)
-         await dispatch(fetchBook('http://localhost:4000/random-book-delayed'))
-      } finally {
-         setIsLoading(false)
-      }
-
+   const addRandomBookViaAPIHandler = () => {
+      dispatch(fetchBook('http://localhost:4000/random-book-delayed'))
    }
 
    return (
@@ -61,8 +56,8 @@ const BookForm = () => {
             </div>
             <button type='submit'>Add Book</button>
             <button type='button' onClick={addRandomBookHandler}>Add Random Book</button>
-            <button type='button' onClick={addRandomBookViaAPIHandler} disabled={isLoading}>
-               {isLoading
+            <button type='button' onClick={addRandomBookViaAPIHandler} disabled={isLoadingViaAPI}>
+               {isLoadingViaAPI
                   ? (<><span>Loading Book...</span>
                      <RiLoopRightLine className='spinner' />
                   </>)
